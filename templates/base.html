@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+	<script type="text/javascript" id="MathJax-script" async
+	  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+	</script>
+	<title>IN2TRACK3 - UMINHO</title>
+  </head>
+  <body>
+    <!-- 
+    <nav>
+      <ul>
+        <li><a href="home">Home</a></li>
+		<li><a href="manual">Manual</a></li>
+      </ul>
+    </nav>
+	<div>
+     -->
+      <img src="{{ url_for('static', filename='logo_IN2TRACK3.png') }}" alt="logo_IN2TRACK3" />
+	  <img src="{{ url_for('static', filename='logo_uminho.png') }}" alt="logo_uminho" />
+	</div>
+	<h1>{% block title %}Railway Management System (RMS){% endblock %}</h1>
+	<div class="content">
+		<content>
+			{% block content %} {% endblock %}
+		</content>
+    </div>
+	<footer>
+	  <div class="footer-content">
+		<h3>About Us</h3>
+		<p>This website was developed by University of Minho.</p>
+		<h3>Contact Us</h3>
+		<p>Email: mbonatte@ymail.com</p>
+	  </div>
+	</footer>
+  </body>
+</html>
