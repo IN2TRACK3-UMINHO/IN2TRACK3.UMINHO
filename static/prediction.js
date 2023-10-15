@@ -185,13 +185,6 @@ function addActionFields(div) {
 
 // Function to send data to the server via a POST request
 async function postMaintenanceToServer() {
-    const chart = Chart.getChart('maintenanceChart');
-    
-    if (chart){
-        chart.data.datasets.pop();
-    };
-    
-    
     const numActions = parseInt(numMaintenanceSelect.value);
 
     // // Create an array to store the form data
@@ -222,6 +215,12 @@ async function postMaintenanceToServer() {
     
     // setChartMaintenanceMode(roadSelected, prediction);
     
-    createChart('maintenanceChart', prediction['LL_prediction']['Time'], prediction['LL_prediction']['IC'], 'Year', 'IC', 'LL');
+    const chart = Chart.getChart('maintenanceChart');
+    
+    if (chart){
+        chart.data.datasets.pop();
+    };
+    
+    createChart('maintenanceChart', prediction['LL_prediction']['Time'], prediction['LL_prediction']['IC'], 'Year', 'IC', 'LL');    
     addPlotToChart('maintenanceChart', prediction['ALG_prediction'], 'ALG', 'rgb(225,106,2)')
 };
