@@ -11,31 +11,37 @@
 	<title>IN2TRACK3 - UMINHO</title>
   </head>
   <body>
-    <!-- 
+  
     <nav>
       <ul>
-        <li><a href="home">Home</a></li>
-		<li><a href="manual">Manual</a></li>
+        <a href="home"><img title="Home" src="{{ url_for('static', filename='home-icon.png') }}" alt="Home" style="width:42px;height:42px;"></a>
+        <a href="prediction"><img title="Prediction" src="{{ url_for('static', filename='prediction-icon.png') }}" alt="Prediction" style="width:42px;height:42px;"></a>
+        <!-- <a href="maintenance"><img title="Maintenance" src="{{ url_for('static', filename='maintenance-icon.png') }}" alt="Maintenance" style="width:42px;height:42px;"></a> -->
+        <a href="configuration"><img title="Configuration" src="{{ url_for('static', filename='configuration-icon.png') }}" alt="Configuration" style="width:42px;height:42px;"></a>
       </ul>
     </nav>
+    
 	<div>
-     -->
       <img src="{{ url_for('static', filename='logo_IN2TRACK3.png') }}" alt="logo_IN2TRACK3" />
 	  <img src="{{ url_for('static', filename='logo_uminho.png') }}" alt="logo_uminho" />
 	</div>
+    
 	<h1>{% block title %}Railway Management System (RMS){% endblock %}</h1>
-	<div class="content">
+	
+    <div class="content">
 		<content>
 			{% block content %} {% endblock %}
 		</content>
     </div>
-	<footer>
+	
+    <footer>
 	  <div class="footer-content">
 		<h3>About Us</h3>
 		<p>This website was developed by University of Minho.</p>
 		<h3>Contact Us</h3>
-		<p>Email: mbonatte@ymail.com</p>
+		<p>Email: mbonatte@civil.uminho.pt</p>
 	  </div>
 	</footer>
+    
   </body>
 </html>

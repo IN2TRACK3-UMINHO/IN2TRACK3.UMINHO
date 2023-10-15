@@ -1,38 +1,90 @@
 [
 	{
-		"name": "Major intervention",
-		"time_of_reduction":   [
-                                0, 0, 0, 
-                                2, 2, 2, 
-                                1, 1, 1, 
-                                0, 0, 0, 
-                                0, 0, 0
-                                ],
-        "reduction_rate":  [
-                            0, 0, 0, 
-                            0.2, 0.2, 0.2, 
-                            0.2, 0.2, 0.2, 
-                            0, 0, 0, 
-                            0, 0, 0
-                            ],
-		"cost": 3.70
-	},
-	{
-		"name": "Minor intervention",
-		"time_of_reduction":   [
-                                0, 0, 0, 
-                                2, 2, 2, 
-                                1, 1, 1, 
-                                0, 0, 0, 
-                                0, 0, 0
-                                ],
-        "reduction_rate":  [
-                            0, 0, 0, 
-                            0.2, 0.2, 0.2, 
-                            0.2, 0.2, 0.2, 
-                            0, 0, 0, 
-                            0, 0, 0
-                            ],
+		"name": "Minor intervention - LL",
+		"LL": {
+            "time_of_reduction": {
+                "1": [7, 7, 7], 
+				"2": [7, 7, 7]
+                },
+			"reduction_rate":  {
+                "1": [0.2, 0.2, 0.2], 
+                "2": [0.2, 0.2, 0.2]
+                }
+        },
 		"cost": 1.70
+	},
+    {
+		"name": "Major intervention - LL",
+        "LL": {
+            "improvement":   {
+                "2": [1, 1, 1],
+                "3": [2, 2, 2]
+                }
+        },
+		"cost": 10
+	},
+    {
+		"name": "Minor intervention - ALG",
+		"ALG": {
+            "time_of_reduction": {
+                "1": [7, 7, 7], 
+				"2": [7, 7, 7]
+                },
+			"reduction_rate":  {
+                "1": [0.2, 0.2, 0.2], 
+                "2": [0.2, 0.2, 0.2]
+                }
+        },
+		"cost": 1.70
+	},
+    {
+		"name": "Major intervention - ALG",
+        "ALG": {
+            "improvement":   {
+                "2": [1, 1, 1],
+                "3": [2, 2, 2]
+                }
+        },
+		"cost": 10
+	},
+    {
+		"name": "Minor intervention - BOTH",
+        "LL": {
+            "time_of_reduction": {
+                "1": [7, 7, 7], 
+				"2": [7, 7, 7]
+                },
+			"reduction_rate":  {
+                "1": [0.2, 0.2, 0.2], 
+                "2": [0.2, 0.2, 0.2]
+                }
+        },
+		"ALG": {
+            "time_of_reduction": {
+                "1": [7, 7, 7], 
+				"2": [7, 7, 7]
+                },
+			"reduction_rate":  {
+                "1": [0.2, 0.2, 0.2], 
+                "2": [0.2, 0.2, 0.2]
+                }
+        },
+		"cost": 4
+	},
+    {
+		"name": "Major intervention - BOTH",
+        "LL": {
+            "improvement":   {
+                "2": [1, 1, 1],
+                "3": [2, 2, 2]
+                }
+        },
+        "ALG": {
+            "improvement":   {
+                "2": [1, 1, 1],
+                "3": [1, 2, 2]
+                }
+        },
+		"cost": 10
 	}
 ]

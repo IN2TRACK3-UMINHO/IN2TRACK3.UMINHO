@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Prediction
+{% endblock %}
+
+{% block content %}
+	<div id="chart-wrapper" height="100px" width="100px">
+		<canvas id="predictionChart"></canvas>
+	</div>
+    
+    <h1>Maintenance</h1>
+    
+    <div id="maintenance-div">
+	</div>
+    
+    <div id="chart-wrapper" height="100px" width="100px">
+		<canvas id="maintenanceChart"></canvas>
+	</div>
+    
+	{% block extra_block %} {% endblock %}
+    
+    <script>
+    // Pass the data to the external JavaScript file
+    const markov_prediction = {{ markov_prediction | tojson | safe }};
+    const maintenanceActions = {{ maintenanceActions | tojson | safe }};
+    </script>
+    
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{url_for('static', filename='prediction.js')}}"></script>
+{% endblock %}
+	

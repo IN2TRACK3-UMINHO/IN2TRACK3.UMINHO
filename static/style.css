@@ -55,7 +55,7 @@ input[type="file"]::file-selector-button {
 
 img {
   width: auto; /* This will maintain the aspect ratio of the image */
-  height: 165px;
+  height: 100px;
   img-align: center;
 }
 

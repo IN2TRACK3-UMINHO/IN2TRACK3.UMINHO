@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Configuration
+{% endblock %}
+
+{% block content %}
+    <h1 id="importContent"> Update inpections </h1>
+	 <b>Inspections:</b>
+    <input type="file" id="inspections-file" accept=".csv">
+    
+    <h1 id="importContent"> Update Actions </h1>
+	 <b>Actions:</b>
+    <input type="file" id="maintenance-file" accept=".json">
+	{% block extra_block %} {% endblock %}
+    
+    <script src="{{url_for('static', filename='configuration.js')}}"></script>
+{% endblock %}
+	
