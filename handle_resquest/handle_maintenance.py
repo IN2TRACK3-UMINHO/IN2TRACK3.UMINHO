@@ -3,8 +3,8 @@ import json
 import numpy as np
 import pandas as pd
 
-from prediction.markov import MarkovContinous
-from .performance import Performance
+from ams.prediction.markov import MarkovContinous
+from ams.performance.performance import Performance
 
 from pathlib import Path
 MAIN_FOLDER = Path(__file__).parent.parent.resolve()

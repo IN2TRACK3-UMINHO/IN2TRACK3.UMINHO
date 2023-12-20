@@ -1,7 +1,7 @@
 import io
 import numpy as np
 import pandas as pd
-from .markov import MarkovContinous
+from ams.prediction.markov import MarkovContinous
 
 def convert_to_markov(df, worst_IC, best_IC, time_block):
     df['Data'] = pd.to_datetime(df['Data'], format='%d/%m/%Y')
