@@ -1,4 +1,3 @@
-import os
 import uuid
 import json
 
@@ -87,13 +86,15 @@ def setting_get():
 def setting_post():
     if ('inspectionsFile' in request.files):
         file = request.files['inspectionsFile']
-        file.save(os.path.join('database', file.filename))
+        path = THIS_FOLDER / 'database/DataBase_In2Track3.csv'
+        file.save(path)
         update_markov()
         return ''
     
     if ('maintenanceFile' in request.files):
         file = request.files['maintenanceFile']
-        file.save(os.path.join('database', file.filename))
+        path = THIS_FOLDER / 'database/ActionsEffects.json'
+        file.save(path)
         return ''
     
     return jsonify({'error': 'No file uploaded'}), 400
@@ -104,7 +105,7 @@ def logout():
     return redirect('/login')
 
 def update_markov():
-    file_location = os.path.join('database', 'DataBase_In2Track3.csv')
+    file_location = THIS_FOLDER / 'database/DataBase_In2Track3.csv'
     df  = pd.read_csv(file_location, sep=',')
     
     time_hoziron = 50
