@@ -11,39 +11,30 @@ MAIN_FOLDER = Path(__file__).parent.parent.resolve()
 
  
 def get_IC_through_time_maintenance(maintenance_scenario, time_hoziron=50):
-
-    response = {}
-    response['LL_prediction'] = {}
-    response['ALG_prediction'] = {}
-    
     path = MAIN_FOLDER / 'database/markov.json'
     with open(path, "r") as file:
-        thetas = json.load(file)
+        indicators = json.load(file)
     
     path = MAIN_FOLDER / 'database/ActionsEffects.json'
     with open(path, "r") as file:
         maintenance_data = json.load(file)
     
-    markov_LL = MarkovContinous(3, 1)
-    markov_LL.theta = thetas['LL']
+    response = {}
     
-    markov_ALG = MarkovContinous(3, 1)
-    markov_ALG.theta = thetas['ALG']
+    for indicator in indicators:
+        response[indicator] = {}
     
-    performance_LL = Performance(markov_LL, extract_indicator('LL', maintenance_data))
-    performance_ALG = Performance(markov_ALG, extract_indicator('ALG', maintenance_data))
+        markov_indicator = MarkovContinous(3, 1)
+        markov_indicator.theta = indicators[indicator]['theta']
 
-    response['LL_prediction']['Time'] = list(range(0, time_hoziron + 1))
-    response['LL_prediction']['IC'] = list(performance_LL.get_IC_over_time(time_hoziron,
-                                                       initial_IC = 1,
-                                                       actions_schedule=maintenance_scenario,
-                                                       number_of_samples=1000))
-    
-    response['ALG_prediction']['Time'] = list(range(0, time_hoziron + 1))
-    response['ALG_prediction']['IC'] = list(performance_ALG.get_IC_over_time(time_hoziron,
-                                                       initial_IC = 1,
-                                                       actions_schedule=maintenance_scenario,
-                                                       number_of_samples=1000))    
+        performance_indicator = Performance(markov_indicator, 
+                                            extract_indicator(indicator, maintenance_data))
+
+        response[indicator]['Time'] = list(range(0, time_hoziron + 1))
+        response[indicator]['IC'] = list(performance_indicator.get_IC_over_time(time_hoziron,
+                                                           initial_IC = 1,
+                                                           actions_schedule=maintenance_scenario,
+                                                           number_of_samples=1000))
 
     return response
 

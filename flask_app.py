@@ -108,24 +108,20 @@ def update_markov():
     file_location = THIS_FOLDER / 'database/DataBase_In2Track3.csv'
     df  = pd.read_csv(file_location, sep=',')
     
+    indicators = filter(lambda i: i not in ['Nome', 'Data'], df.columns)
+
     time_hoziron = 50
     markov_prediction = {}
     
-    data_converted = handle_prediction.convert_to_markov(df[['Nome', 'Data',  'LL']], 3, 1, 'year')
-    markov_LL = handle_prediction.get_fitted_markov_model(data_converted, 3, 1)
-    
-    markov_prediction['LL'] = list(markov_LL.theta)
-    markov_prediction['LL_prediction'] = {'Time': list(range(0, time_hoziron + 1))}
-    markov_prediction['LL_prediction']['IC'] = list(markov_LL.get_mean_over_time(time_hoziron))
-    
-    
-    data_converted = handle_prediction.convert_to_markov(df[['Nome', 'Data',  'ALG']], 3, 1, 'year')
-    markov_ALG = handle_prediction.get_fitted_markov_model(data_converted, 3, 1)
-    
-    markov_prediction['ALG'] = list(markov_ALG.theta)
-    markov_prediction['ALG_prediction'] = {'Time': list(range(0, time_hoziron + 1))}
-    markov_prediction['ALG_prediction']['IC'] = list(markov_ALG.get_mean_over_time(time_hoziron))
-    
+    for indicator in indicators:
+        data_converted = handle_prediction.convert_to_markov(df[['Nome', 'Data',  indicator]], 3, 1, 'year')
+        markov_indicator = handle_prediction.get_fitted_markov_model(data_converted, 3, 1)
+        
+        markov_prediction[indicator] = {}
+        markov_prediction[indicator]['theta'] = list(markov_indicator.theta)
+        markov_prediction[indicator]['prediction'] = {}
+        markov_prediction[indicator]['prediction']['Time'] = list(range(0, time_hoziron + 1))
+        markov_prediction[indicator]['prediction']['IC'] = list(markov_indicator.get_mean_over_time(time_hoziron))
 
     
     # Writing

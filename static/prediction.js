@@ -1,12 +1,20 @@
-
-
 // The markov_prediction variable is passed from Flask
-// console.log(markov_prediction);
+console.log(markov_prediction);
+const indicators = Object.keys(markov_prediction);
 
 // Call the function to create chart when the page loads
-createChart('predictionChart', markov_prediction['LL_prediction']['Time'], markov_prediction['LL_prediction']['IC'], 'Year', 'IC', 'LL');
-//createChart('predictionChart', markov_prediction['ALG_prediction']['Time'], markov_prediction['ALG_prediction']['IC'], 'Year', '', '');
-addPlotToChart('predictionChart', markov_prediction['ALG_prediction'], 'ALG', 'rgb(225,106,2)')
+for (let i = 0; i < indicators.length; i++) {
+    if (i===0) {
+        createChart('predictionChart', markov_prediction[indicators[i]]['prediction']['Time'], markov_prediction[indicators[i]]['prediction']['IC'], 'Year', 'IC', indicators[i]);
+    }
+    else {
+        let color = 'rgb(225,106,2)'
+        if (i > 1){
+            color = "#" + Math.floor(Math.random()*16777215).toString(16)
+        }
+        addPlotToChart('predictionChart', markov_prediction[indicators[i]]['prediction'], indicators[i], color)
+    }
+}
 
 function createChart(canvas_name, data_x, data_y, x_label, y_label, data_title) {
     console.log(`DEBUGGING - createChart - ${data_title}`);
@@ -221,6 +229,18 @@ async function postMaintenanceToServer() {
         chart.data.datasets.pop();
     };
     
-    createChart('maintenanceChart', prediction['LL_prediction']['Time'], prediction['LL_prediction']['IC'], 'Year', 'IC', 'LL');    
-    addPlotToChart('maintenanceChart', prediction['ALG_prediction'], 'ALG', 'rgb(225,106,2)')
+    const indicators = Object.keys(prediction);
+    
+    for (let i = 0; i < indicators.length; i++) {
+        if (i===0) {
+            createChart('maintenanceChart', prediction[indicators[i]]['Time'], prediction[indicators[i]]['IC'], 'Year', 'IC', indicators[i]);
+        }
+        else {
+            let color = 'rgb(225,106,2)'
+            if (i > 1){
+                color = "#" + Math.floor(Math.random()*16777215).toString(16)
+            }
+            addPlotToChart('maintenanceChart', prediction[indicators[i]], indicators[i], color)
+        }
+    }
 };
